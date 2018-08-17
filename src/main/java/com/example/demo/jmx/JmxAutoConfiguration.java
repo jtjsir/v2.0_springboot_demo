@@ -8,7 +8,7 @@ import org.springframework.jmx.support.ConnectorServerFactoryBean;
 import org.springframework.remoting.rmi.RmiRegistryFactoryBean;
 
 /**
- * @author jingtj15578
+ * @author nanco
  * @create 2018/8/8
  **/
 @Configuration

@@ -3,7 +3,7 @@ package com.example.demo.amqp.producer;
 import com.rabbitmq.client.*;
 
 /**
- * @author jingtj15578
+ * @author nanco
  * @create 2018/8/10
  **/
 public class Producer {

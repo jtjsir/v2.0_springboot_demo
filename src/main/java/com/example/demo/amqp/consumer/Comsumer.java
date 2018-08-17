@@ -5,7 +5,7 @@ import com.rabbitmq.client.*;
 import java.io.IOException;
 
 /**
- * @author jingtj15578
+ * @author nanco
  * @create 2018/8/10
  **/
 public class Comsumer {

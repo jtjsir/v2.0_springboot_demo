@@ -4,7 +4,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @author jingtj15578
+ * @author nanco
  * @create 2018/8/13
  **/
 @Configuration
