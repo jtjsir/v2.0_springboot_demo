@@ -1,6 +1,7 @@
 package com.example.demo.redis;
 
 import com.example.demo.redis.operations.RedisApplication;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,6 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -21,7 +23,7 @@ import java.util.concurrent.TimeUnit;
  **/
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {RedisApplication.class})
-public class RedisTemplateOperationTest {
+public class MainOperationTest {
 
     private TimeUnit unit_minute = null;
 
@@ -123,5 +125,13 @@ public class RedisTemplateOperationTest {
         stringRedisTemplate.opsForZSet().reverseRangeByScoreWithScores("score", 0, 100).forEach(action -> {
             System.out.println(action.getValue() + ":" + action.getScore());
         });
+    }
+
+    @Test
+    public void testDelKeys(){
+        Set<String> hashKeys = stringRedisTemplate.keys("*") ;
+        Assert.assertNotEquals("keys in redis is zero" , 0 , hashKeys.size());
+
+        System.out.println(stringRedisTemplate.delete(hashKeys)) ;
     }
 }
