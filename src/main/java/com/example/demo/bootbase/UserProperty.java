@@ -1,13 +1,11 @@
 package com.example.demo.bootbase;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
 
 /**
  * @author nanco
  * @create 2018/8/13
  **/
-@Configuration
 @ConfigurationProperties(prefix = "user.custom")
 public class UserProperty {
 
@@ -59,5 +57,16 @@ public class UserProperty {
 
     public void setJob(String job) {
         this.job = job;
+    }
+
+    @Override
+    public String toString() {
+        return "UserProperty{" +
+                "username='" + username + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", job='" + job + '\'' +
+                '}';
     }
 }
