@@ -7,6 +7,10 @@ using demos for springboot based on v2.0
 - redis(v3.2+)
 - rabbitmq(v3.7.7)
 
+# What's your urgent task to know?
+What the springboot?How does it work?
+The answer is to take care of the springboot source,you can click in [this](https://www.cnblogs.com/question-sky/p/9360722.html) to have a sight.
+
 # What This include?
 Now the project includes redis/jmx/rabbitmq demo which based on the springboot.
 
@@ -208,7 +212,7 @@ public class RedisTemplateOperationTest {
     public void testHSet() {
         Map<String, String> accountMap = new HashMap<>(8);
         accountMap.put("name", "jingtj");
-        accountMap.put("age", "24");
+        accountMap.put("age", "18");
         accountMap.put("email", "questionsky1211@gmail.com");
         accountMap.put("sex", "male");
         accountMap.put("job", "programmer");
@@ -288,6 +292,7 @@ public class RedisTemplateOperationTest {
 }
 
 ```
+
 
 # Conclusion
 This project just commits the several plugin demos which integrated by springboot,such as Redis,Rabbitmq,Hbase and so on. 
