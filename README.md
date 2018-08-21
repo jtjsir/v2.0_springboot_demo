@@ -1,5 +1,5 @@
 # v2.0_springboot_demo
-using demos for springboot based on v2.0
+Useful demos for springboot based on v2.0
 
 # Programmer Environment
 - jdk(v1.8+)
@@ -8,11 +8,11 @@ using demos for springboot based on v2.0
 - rabbitmq(v3.7.7)
 
 # What's your urgent task to know?
-What the springboot?How does it work?
-The answer is to take care of the springboot source,you can click in [this](https://www.cnblogs.com/question-sky/p/9360722.html) to have a sight.
+What is the springboot?How does it work?
+The answer is to take care of the springboot source,you can click [this](https://www.cnblogs.com/question-sky/p/9360722.html) to have a sight.
 
-# What This include?
-Now the project includes redis/jmx/rabbitmq demo which based on the springboot.
+# What does this project include?
+Now includes redis/jmx/rabbitmq demo which based on the springboot.Samples below
 
 ---
 Application starter for jmx
@@ -166,6 +166,7 @@ Demo for redis
 package com.example.demo.redis;
 
 import com.example.demo.redis.operations.RedisApplication;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -176,6 +177,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -186,7 +188,7 @@ import java.util.concurrent.TimeUnit;
  **/
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {RedisApplication.class})
-public class RedisTemplateOperationTest {
+public class MainOperationTest {
 
     private TimeUnit unit_minute = null;
 
@@ -288,6 +290,14 @@ public class RedisTemplateOperationTest {
         stringRedisTemplate.opsForZSet().reverseRangeByScoreWithScores("score", 0, 100).forEach(action -> {
             System.out.println(action.getValue() + ":" + action.getScore());
         });
+    }
+
+    @Test
+    public void testDelKeys(){
+        Set<String> hashKeys = stringRedisTemplate.keys("*") ;
+        Assert.assertNotEquals("keys in redis is zero" , 0 , hashKeys.size());
+
+        System.out.println(stringRedisTemplate.delete(hashKeys)) ;
     }
 }
 
