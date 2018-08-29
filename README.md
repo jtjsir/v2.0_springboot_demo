@@ -159,6 +159,9 @@ public class Comsumer {
 }
 
 ```
+At the same time,you can also find the rabbitmq samples which integrate the springboot in 
+[AmqpTemplate sample](https://github.com/jtjsir/v2.0_springboot_demo/tree/master/src/test/java/com/example/demo/amqp/AmqpTemplateTest.java) and 
+[@RabbitListener sample](https://github.com/jtjsir/v2.0_springboot_demo/tree/master/src/test/java/com/example/demo/amqp/RabbitmqAnnotationTest.java)
 
 ----
 Demo for redis
