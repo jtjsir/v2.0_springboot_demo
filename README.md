@@ -5,14 +5,14 @@ Useful demos for springboot based on v2.0
 - jdk(v1.8+)
 - springboot(v2.0+)
 - redis(v3.2+)
-- rabbitmq(v3.7.7)
+- rabbitmq(v3.7.7+)
 
 # What's your urgent task to know?
 What is the springboot?How does it work?
-The answer is to take care of the springboot source,you can click [this](https://www.cnblogs.com/question-sky/p/9360722.html) to have a sight.
+The answer is to take care of the springboot source,of course you can click [this](https://www.cnblogs.com/question-sky/p/9360722.html) to have a sight.
 
 # What does this project include?
-Now includes redis/jmx/rabbitmq demo which based on the springboot.Samples below
+Now includes redis/jmx/rabbitmq demo which base on the springboot.Samples as following
 
 ---
 Application starter for jmx
@@ -308,4 +308,4 @@ public class MainOperationTest {
 
 
 # Conclusion
-This project just commits the several plugin demos which integrated by springboot,such as Redis,Rabbitmq,Hbase and so on. 
+This project just commits the several plugin demos which is integrated by springboot,such as Redis/Rabbitmq/Hbase and so on. 
