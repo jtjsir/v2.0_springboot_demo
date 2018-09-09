@@ -1,6 +1,8 @@
 package com.example.demo.web.controller;
 
+import com.example.demo.web.validation.SimpleValidation;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,5 +26,10 @@ public class DemoController {
         Map<String, String> result = new HashMap<>();
         result.put("springboot", "hello world");
         return result;
+    }
+
+    @RequestMapping(value = "/validate", method = RequestMethod.POST)
+    public Object validate(@Validated SimpleValidation validation) {
+        return validation.toString();
     }
 }
