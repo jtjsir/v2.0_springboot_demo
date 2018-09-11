@@ -28,7 +28,7 @@ public class DemoController {
         return result;
     }
 
-    @RequestMapping(value = "/validate", method = RequestMethod.POST)
+    @RequestMapping(value = "/validate", method = RequestMethod.GET)
     public Object validate(@Validated SimpleValidation validation) {
         return validation.toString();
     }
