@@ -6,7 +6,7 @@
     <include resource="org/springframework/boot/logging/logback/file-appender.xml" />
     <root level="INFO">
         <appender-ref ref="CONSOLE" />
-        <appender-ref ref="FILE" />
+        <!--<appender-ref ref="FILE" />-->
     </root>
     <logger name="org.springframework.web" level="INFO"/>
 </configuration>
