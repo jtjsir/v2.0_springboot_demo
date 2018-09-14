@@ -5,6 +5,7 @@ import com.example.demo.web.model.websocket.ResMessage;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.messaging.simp.annotation.SubscribeMapping;
 import org.springframework.stereotype.Controller;
 
 import javax.annotation.Resource;
@@ -49,5 +50,15 @@ public class SimpleController {
         resMessage.setContent(String.format("Halo, %s !", reqMessage.getUsername()));
 
         messagingTemplate.convertAndSend("/topic/hello", resMessage);
+    }
+
+    /**
+     * directly to response subscribe frame request
+     *
+     * @return
+     */
+    @SubscribeMapping("/subscribe")
+    public String subscribe() {
+        return "Subscribe OK";
     }
 }

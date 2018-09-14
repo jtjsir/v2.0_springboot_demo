@@ -1,7 +1,7 @@
 "use strict";
 var stompClient = null;
 
-var remotePath = "http://10.26.118.255:8081/gs-guide-websocket";
+var remotePath = "http://127.0.0.1:9001/ws-demo";
 
 function setConnected(connected) {
     $("#connect").prop("disabled", connected);
@@ -21,7 +21,7 @@ function connect() {
     stompClient.connect({}, function (frame) {
         setConnected(true);
         console.log('Connected: ' + frame);
-        stompClient.subscribe(remotePath + '/topic/halo', function (greeting) {
+        stompClient.subscribe('/topic/halo', function (greeting) {
             showGreeting(JSON.parse(greeting.body).content);
         });
     });
@@ -36,7 +36,7 @@ function disconnect() {
 }
 
 function sendName() {
-    stompClient.send(remotePath + "/topic/halo", {}, JSON.stringify({'username': $("#name").val()}));
+    stompClient.send("/app/halo", {}, JSON.stringify({'username': $("#name").val()}));
 }
 
 function showGreeting(message) {
