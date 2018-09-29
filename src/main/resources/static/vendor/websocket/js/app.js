@@ -6,6 +6,7 @@ var remotePath = "http://127.0.0.1:9001/ws-demo";
 function setConnected(connected) {
     $("#connect").prop("disabled", connected);
     $("#disconnect").prop("disabled", !connected);
+    $('#subscription').prop('disabled', !connected);
     if (connected) {
         $("#conversation").show();
     }
@@ -39,11 +40,24 @@ function sendName() {
     stompClient.send("/app/halo", {}, JSON.stringify({'username': $("#name").val()}));
 }
 
+function testSubscription() {
+    stompClient.subscribe('/app/subscribe', function (resp) {
+        if (resp.body.indexOf('OK') != -1) {
+            $('#send').prop('disabled', false);
+            $('#send').parent().find('input[id="name"]').prop('disabled', false);
+        } else {
+            $('#send').prop('disabled', true);
+            $('#send').parent().find('input[id="name"]').prop('disabled', true);
+        }
+    })
+}
+
 function showGreeting(message) {
     $("#greetings").append("<tr><td>" + message + "</td></tr>");
 }
 
 $(function () {
+    setConnected(false);
     $("form").on('submit', function (e) {
         e.preventDefault();
     });
@@ -55,5 +69,8 @@ $(function () {
     });
     $("#send").click(function () {
         sendName();
+    });
+    $('#subscription').click(function () {
+        testSubscription();
     });
 });

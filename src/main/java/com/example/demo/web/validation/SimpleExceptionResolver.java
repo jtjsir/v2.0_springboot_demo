@@ -2,6 +2,8 @@ package com.example.demo.web.validation;
 
 import com.example.demo.web.model.ResEntity;
 import com.google.gson.Gson;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.validation.BindException;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.servlet.ModelAndView;
@@ -24,6 +26,8 @@ import java.util.Map;
  */
 public class SimpleExceptionResolver extends AbstractHandlerExceptionResolver {
 
+    private static final Logger EXCEPTION_LOG = LoggerFactory.getLogger(SimpleExceptionResolver.class);
+
     private final Map<String, List<String>> errorResultMap = new HashMap<>(2);
 
     private final String ERROR_KEY = "error_result";
@@ -32,7 +36,7 @@ public class SimpleExceptionResolver extends AbstractHandlerExceptionResolver {
 
     @Override
     protected ModelAndView doResolveException(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
-
+        // only process BindException,unless return null to allow the next handler understanding the exception
         if (BindException.class.isInstance(ex)) {
             ResEntity resEntity = new ResEntity();
             try {
@@ -50,9 +54,11 @@ public class SimpleExceptionResolver extends AbstractHandlerExceptionResolver {
 
                 response.getOutputStream().write(gson.toJson(resEntity).getBytes());
             } catch (IOException e) {
-                e.printStackTrace();
+                EXCEPTION_LOG.error("process BindException fail.", e);
             }
+
+            return new ModelAndView();
         }
-        return new ModelAndView();
+        return null;
     }
 }

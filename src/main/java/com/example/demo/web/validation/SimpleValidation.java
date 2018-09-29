@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
  */
 public class SimpleValidation {
 
-    @NotNull(message = "name is allowed to nullable")
+    @NotNull(message = "name is not allowed to be nullable")
     private String name;
 
     private int age;
