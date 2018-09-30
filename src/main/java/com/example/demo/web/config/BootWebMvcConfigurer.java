@@ -33,6 +33,7 @@ public class BootWebMvcConfigurer implements WebMvcConfigurer {
     @Override
     public void extendHandlerExceptionResolvers(List<HandlerExceptionResolver> resolvers) {
         // response first
+        // response as following: 1. SimpleExceptionResolver 2. ExceptionHandlerExceptionResolver 3.ResponseStatusExceptionResolver 4.DefaultHandlerExceptionResolver
         resolvers.add(0, new SimpleExceptionResolver());
     }
 }

@@ -1,5 +1,6 @@
 package com.example.demo.web.controller;
 
+import com.example.demo.web.config.exception.BizForbiddenException;
 import com.example.demo.web.validation.SimpleValidation;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
@@ -31,5 +32,11 @@ public class DemoController {
     @RequestMapping(value = "/validate", method = RequestMethod.GET)
     public Object validate(@Validated SimpleValidation validation) {
         return validation.toString();
+    }
+
+    @RequestMapping(value = "/forbidden", method = RequestMethod.GET)
+    public void forbidden() {
+        // will call ResponseStatusExceptionResolver to response
+        throw new BizForbiddenException();
     }
 }
