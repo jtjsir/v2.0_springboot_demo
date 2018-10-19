@@ -27,7 +27,7 @@ public class MysqlDaoTest {
 
     @Test
     public void testConnect() {
-        Assert.notNull(userDao, "mybatis load success.");
+        Assert.notNull(userDao, "mybatis load fail.");
     }
 
     @Test
