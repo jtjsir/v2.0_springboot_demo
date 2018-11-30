@@ -1,6 +1,6 @@
 package com.example.demo.redis.base;
 
-import com.example.demo.redis.operations.RedisApplication;
+import com.example.demo.redis.operations.app.RedisApplication;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.StringRedisTemplate;

@@ -1,6 +1,6 @@
 package com.example.demo.redis;
 
-import com.example.demo.redis.operations.RedisApplication;
+import com.example.demo.redis.operations.app.RedisApplication;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

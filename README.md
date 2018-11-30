@@ -67,7 +67,7 @@ public class JmxAutoConfiguration {
 ---
 Rabbitmq demo-producer
 ```java
-package com.example.demo.amqp.producer;
+package com.example.demo.amqp.profile.producer;
 
 import com.rabbitmq.client.*;
 
@@ -114,7 +114,7 @@ public class Producer {
 
 Rabbitmq demo-consumer
 ```java
-package com.example.demo.amqp.consumer;
+package com.example.demo.amqp.profile.consumer;
 
 import com.rabbitmq.client.*;
 
@@ -168,7 +168,7 @@ Demo for redis
 ```java
 package com.example.demo.redis;
 
-import com.example.demo.redis.operations.RedisApplication;
+import com.example.demo.redis.operations.app.RedisApplication;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

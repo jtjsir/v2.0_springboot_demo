@@ -1,5 +1,6 @@
 package com.example.demo.amqp;
 
+import com.example.demo.amqp.app.AmqpApplication;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
