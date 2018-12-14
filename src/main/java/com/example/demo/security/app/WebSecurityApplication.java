@@ -17,6 +17,9 @@ import org.springframework.context.annotation.Profile;
 @Configuration
 public class WebSecurityApplication {
 
+    /**
+     * notice this,the static nested class is equal to be scanned with the outer class
+     */
     @Configuration
     @Profile(SeveralEnvironment.SECURITY)
     @ConditionalOnClass(MybatisAutoConfiguration.class)

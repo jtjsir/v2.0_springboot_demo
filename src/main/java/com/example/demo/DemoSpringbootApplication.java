@@ -5,6 +5,7 @@ import com.example.demo.bootbase.UserProperty;
 import com.example.demo.database.app.DatabaseApplication;
 import com.example.demo.jmx.app.JmxApplication;
 import com.example.demo.redis.operations.app.RedisApplication;
+import com.example.demo.security.app.WebSecurityApplication;
 import com.example.demo.web.app.MvcApplication;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -19,7 +20,8 @@ import org.springframework.context.annotation.Configuration;
         AmqpApplication.class,
         JmxApplication.class,
         DatabaseApplication.class,
-        RedisApplication.class
+        RedisApplication.class,
+        WebSecurityApplication.class
 })
 public class DemoSpringbootApplication {
 

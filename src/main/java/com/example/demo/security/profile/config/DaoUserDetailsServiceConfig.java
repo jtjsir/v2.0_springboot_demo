@@ -9,6 +9,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.Md4PasswordEncoder;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.annotation.Resource;
@@ -34,7 +36,7 @@ public class DaoUserDetailsServiceConfig {
      *
      * @see org.springframework.security.authentication.dao.DaoAuthenticationProvider
      */
-    @Configuration
+    @Configuration(value = "defaultDemoUserDetailsService")
     public static class DefaultUserDetailsService implements UserDetailsService {
 
         private static final String DEFAULT_PASS = "defaultPass";
@@ -60,9 +62,9 @@ public class DaoUserDetailsServiceConfig {
             return userdetails;
         }
 
-        @Bean
+        @Bean(name = "defaultDemoPasswordEncoder")
         public PasswordEncoder daoPasswordEncoder() {
-            PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+            PasswordEncoder passwordEncoder = NoOpPasswordEncoder.getInstance();
 
             return passwordEncoder;
         }
