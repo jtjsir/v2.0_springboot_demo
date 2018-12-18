@@ -4,6 +4,7 @@ import com.example.demo.web.profile.validation.SimpleExceptionResolver;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.servlet.HandlerExceptionResolver;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -25,6 +26,7 @@ public class BootWebMvcConfigurer implements WebMvcConfigurer {
 
     }
 
+
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
 
@@ -35,5 +37,14 @@ public class BootWebMvcConfigurer implements WebMvcConfigurer {
         // response first
         // response as following: 1. SimpleExceptionResolver 2. ExceptionHandlerExceptionResolver 3.ResponseStatusExceptionResolver 4.DefaultHandlerExceptionResolver
         resolvers.add(0, new SimpleExceptionResolver());
+    }
+
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        // access /boot/** for specific origin
+        registry.addMapping("/boot/**")
+                .allowedOrigins("https://mail.google.com")
+                .allowCredentials(false)
+                .allowedMethods("GET", "POST");
     }
 }

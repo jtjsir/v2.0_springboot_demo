@@ -13,9 +13,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 
 import javax.annotation.Resource;
-import javax.sql.DataSource;
 
 /**
  * @author nanco
@@ -102,6 +102,9 @@ public class DemoWebSecurityAdapter extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        // cors access,it will auto detect the mvc cors config
+        http.cors();
+
         // csrf protection
         http
                 .csrf()
@@ -115,5 +118,16 @@ public class DemoWebSecurityAdapter extends WebSecurityConfigurerAdapter {
                 .and().httpBasic()
         ;
 
+        // Authorize interceptor config
+        configureAuthorizeInterceptor(http);
+
+    }
+
+    private void configureAuthorizeInterceptor(HttpSecurity http) {
+        boolean hasCustomInterceptor = getApplicationContext().containsBean("customFilterSecurityInterceptor");
+        if (hasCustomInterceptor) {
+            FilterSecurityInterceptor customInterceptor = (FilterSecurityInterceptor) getApplicationContext().getBean("customFilterSecurityInterceptor");
+            http.addFilterAfter(customInterceptor, FilterSecurityInterceptor.class);
+        }
     }
 }
