@@ -8,6 +8,7 @@ import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.access.SecurityConfig;
+import org.springframework.security.access.intercept.InterceptorStatusToken;
 import org.springframework.security.authentication.InsufficientAuthenticationException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -16,6 +17,8 @@ import org.springframework.security.web.access.intercept.FilterInvocationSecurit
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 import org.springframework.util.StringUtils;
 
+import javax.servlet.ServletException;
+import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -49,13 +52,30 @@ public class CustomAuthorizeConfig {
      */
     @Bean("customFilterSecurityInterceptor")
     public FilterSecurityInterceptor customFilterSecurityInterceptor() {
-        FilterSecurityInterceptor interceptor = new FilterSecurityInterceptor();
+        FilterSecurityInterceptor interceptor = new CustomFilterSecurityInterceptor();
         interceptor.setAccessDecisionManager(customAccessDecisionManager());
         interceptor.setSecurityMetadataSource(customSecurityMetadataSource());
 
         return interceptor;
     }
 
+
+    /**
+     * 角色校验拦截器
+     */
+    private class CustomFilterSecurityInterceptor extends FilterSecurityInterceptor {
+
+        @Override
+        public void invoke(FilterInvocation fi) throws IOException, ServletException {
+            // 不采取原先的校验方式,以免该拦截器无法生效
+            InterceptorStatusToken token = super.beforeInvocation(fi);
+            try {
+                fi.getChain().doFilter(fi.getRequest(), fi.getResponse());
+            } finally {
+                super.finallyInvocation(token);
+            }
+        }
+    }
 
     /**
      * 自定义角色获取
@@ -87,7 +107,7 @@ public class CustomAuthorizeConfig {
             return FilterInvocation.class.isAssignableFrom(clazz);
         }
 
-        public Collection<ConfigAttribute> loadByDao(String certainPath) {
+        private Collection<ConfigAttribute> loadByDao(String certainPath) {
             // 复写实现从数据库或者第三方获取角色信息
             if (!StringUtils.hasText(certainPath)) {
                 return Collections.unmodifiableList(SecurityConfig.createList("ADMIN"));

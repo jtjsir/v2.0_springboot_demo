@@ -126,6 +126,7 @@ public class DemoWebSecurityAdapter extends WebSecurityConfigurerAdapter {
     private void configureAuthorizeInterceptor(HttpSecurity http) {
         boolean hasCustomInterceptor = getApplicationContext().containsBean("customFilterSecurityInterceptor");
         if (hasCustomInterceptor) {
+            // make sure register after the spring boot self interceptor
             FilterSecurityInterceptor customInterceptor = (FilterSecurityInterceptor) getApplicationContext().getBean("customFilterSecurityInterceptor");
             http.addFilterAfter(customInterceptor, FilterSecurityInterceptor.class);
         }
