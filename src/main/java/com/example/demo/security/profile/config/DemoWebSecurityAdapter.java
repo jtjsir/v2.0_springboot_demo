@@ -102,6 +102,9 @@ public class DemoWebSecurityAdapter extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        // set max session per user is 2
+        http.sessionManagement().maximumSessions(2);
+
         // cors access,it will auto detect the mvc cors config
         http.cors();
 
