@@ -4,20 +4,21 @@ Useful demos for springboot based on v2.0
 # Programmer Environment
 - jdk(v1.8+)
 - springboot(v2.0+)
-- redis(v3.2+)
-- rabbitmq(v3.7.7+)
+- redis(v3.2+,if necessary)
+- rabbitmq(v3.7.7+,if necessary)
 
 # What's your urgent task to know?
 What is the springboot?How does it work?
 The answer is to take care of the springboot source,of course you can click [this](https://www.cnblogs.com/question-sky/p/9360722.html) to have a sight.
 
 # What does this project include?
-Now includes redis/jmx/rabbitmq demo which base on the springboot.Samples as following
+Now includes redis/jmx/rabbitmq demo which base on the springboot and so on.
+Samples as following
 
 ---
 Application starter for jmx
 ```java
-package com.example.demo.jmx;
+package com.example.demo.jmx.profile;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -61,6 +62,7 @@ public class JmxAutoConfiguration {
         return serverFactoryBean;
     }
 }
+
 
 ```
 
@@ -109,6 +111,7 @@ public class Producer {
         mqConnection.close();
     }
 }
+
 
 ```
 
